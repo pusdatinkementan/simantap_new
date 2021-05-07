@@ -22,17 +22,17 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function iqfast()
-    {
-        $data['title'] = 'Data PNBP Iqfast';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    // public function iqfast()
+    // {
+    //     $data['title'] = 'Data PNBP Iqfast';
+    //     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('admin/iqfast', $data);
-        $this->load->view('templates/footer');
-    }
+    //     $this->load->view('templates/header', $data);
+    //     $this->load->view('templates/sidebar', $data);
+    //     $this->load->view('templates/topbar', $data);
+    //     $this->load->view('admin/iqfast', $data);
+    //     $this->load->view('templates/footer');
+    // }
 
     public function rekapbpp()
     {
@@ -57,8 +57,7 @@ class Admin extends CI_Controller
                 'kab' => $kab    
                 )
         );
-        
-        //print_r("asd");        
+          
 
         $opts = array('http' =>
             array(
