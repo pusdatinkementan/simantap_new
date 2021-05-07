@@ -19,7 +19,10 @@ class Bpp extends CI_Controller
         $this->load->view('bpp/profil', $data);
         $this->load->view('templates/footer');
     }
-
+	
+	public function test(){
+		
+	}
 
 
     
