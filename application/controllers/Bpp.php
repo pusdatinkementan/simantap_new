@@ -21,7 +21,7 @@ class Bpp extends CI_Controller
     }
 	
 	public function test(){
-		echo 'test';
+		echo 'test 123';
 	}
 
 
