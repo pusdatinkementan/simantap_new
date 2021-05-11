@@ -43,6 +43,7 @@
                               WHERE `user_sub_menu`.`menu_id` = $menuId
                                 AND `user_sub_menu`.`is_active` = 1
                         ";
+						
             $subMenu = $this->db->query($querySubMenu)->result_array();
             ?>
 

@@ -17,4 +17,6 @@ class Penyuluh_model extends CI_Model
 		$json = file_get_contents($this->api_url.'simantap/detailpenyuluh/list?nip='.$nip.'&api-key='.$this->api_key);
 		return json_decode($json,true);
     }
+	
+	
 }
