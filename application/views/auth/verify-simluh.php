@@ -12,16 +12,12 @@
                         <div class="col-lg">
                             <div class="p-5">
                             <div class="text-center">                    
-                                    <h1 class="h4 text-gray-900 mb-4">Sistem Informasi Pemantauan BPP/Kostratani</h1>
+                                    <h1 class="h4 text-gray-900 mb-4">Verifikasi Akun Simluh</h1>
                                 </div>
-                                <div class="text-center">
-                                <img src="<?=base_url()?>/assets/img/logo.png" width="60"></img>
-                                    <h1 class="h4 text-gray-900 mb-4">Login</h1>
-                                </div>
-
+                               
                                 <?= $this->session->flashdata('message'); ?>
 
-                                <form class="user" method="post" action="<?= base_url('auth/act_login'); ?>">
+                                <form class="user" method="post" action="<?= base_url('auth/verifySimluh'); ?>">
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="masukkan username">
                                         <?= form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -31,19 +27,15 @@
                                         <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-user btn-block">
-                                        Login
+                                        Verifikasi
                                     </button>
                                 </form>
                                 <hr>
-                                <!-- <div class="text-center">
-                                    <a class="small" href="<?= base_url('auth/forgotpassword'); ?>">Forgot Password?</a>
-                                </div> -->
+
                                 <div class="text-center">
-                                    <a class="small" href="<?= base_url('auth/verifySimluh'); ?>">Verifikasi</a>
+                                    <a class="small" href="<?= base_url('auth/act_login'); ?>">Kembali Login</a>
                                 </div>
-                                <!-- <div class="text-center">
-                                    <a class="small" href="<?= base_url('auth/registration'); ?>">Create an Account!</a>
-                                </div> -->
+                            
                             </div>
                         </div>
                     </div>
