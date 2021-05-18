@@ -29,8 +29,8 @@
                         <th scope="row"><?= $i; ?></th>
                         <td><?= $m['menu']; ?></td>
                         <td>
-                            <!-- <button type="button" class="badge badge-success" id="tomboledit">Edit</button> -->
-                            <a href="#" class="badge badge-success" id="editmenu">edit</a>
+      
+                            <a href="<?=base_url()?>menu/editmenu/<?=$m['id']?>" class="badge badge-success"'>Edit</a>
                             <!-- <button class="badge badge-success" id="hapusmenu" data-id=<?=$m['id']?>>Hapus</button> -->
                             <a href="<?=base_url()?>menu/deletemenu/<?=$m['id']?>" class="badge badge-danger" onclick='return confirm("are u sure?")'>Delete</a>
                         </td>
