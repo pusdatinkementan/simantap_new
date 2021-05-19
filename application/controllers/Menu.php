@@ -73,9 +73,8 @@ class Menu extends CI_Controller
 
         $data['menu'] = $this->menu->getMasterMenu($id);
 
-        if($_POST){
+        if($_POST){  
 
-           // echo "aaa"; die;
             $data = array(
                 'menu' => $this->input->post('menu')      
                 );
