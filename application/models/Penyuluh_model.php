@@ -18,5 +18,15 @@ class Penyuluh_model extends CI_Model
 		return json_decode($json,true);
     }
 	
+	public function getWilker($wilker='')
+    {
+		$json = file_get_contents($this->api_url.'simantap/getwilker/list?wilker='.$wilker.'&api-key='.$this->api_key);
+		return json_decode($json,true);
+    }
 	
+	public function getPoktan($wilker='')
+    {
+		$json = file_get_contents($this->api_url.'simantap/getpoktan/list?wilker='.$wilker.'&api-key='.$this->api_key);
+		return json_decode($json,true);
+    }
 }

@@ -8,6 +8,7 @@ class Penyuluh extends CI_Controller
         parent::__construct();   
         $this->load->model('Wilayah_model', 'wilayah');     
         $this->load->model('Penyuluh_model', 'penyuluh');
+		//$this->output->enable_profiler();
     }
 
     public function profil(){
@@ -121,27 +122,58 @@ class Penyuluh extends CI_Controller
 		exit();
     }
 
-    public function showKec($id){
-
-        $data['q'] = $this->wilayah->getKec($id);
-
-        foreach($data['q'] as $dtKec){
-
-            echo '<option value="'.$dtKec['kd_kec'].'">'.$dtKec['nm_kec'].'</option>';
-
-        }
+   public function Aktivitasbulanan(){
+		$data['title'] = 'Aktivitas Bulanan';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        
+        $data['penyuluh'] = $this->penyuluh->getPenyuluhbysatminkal();
+		
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/topbar', $data);
+		$this->load->view('penyuluh/profil', $data);
+		$this->load->view('templates/footer');
+   }
+	
+	public function Aktivitas($nip="", $wilker="")
+    {
+		$list = $this->penyuluh->getPenyuluhbynip($nip);
+		$dt = $list[0];
+		//print_r($dt);
+		
+		//print_r($list);
+		$txt ='
+				<table class="table table-hover" >                
+					<tbody>						
+						<tr>
+							<td align="left" width="30%" scope="row">Kelompok</td>
+							<td align="left"><strong>'.$wilker.'</strong></td>							
+						</tr>	
+						<tr>
+							<td align="left" width="30%" scope="row">Jumlah Anggota</td>
+							<td align="left"><strong>otomatis</strong></td>							
+						</tr>	
+						<tr>
+							<td align="left" width="30%" scope="row">Metode</td>
+							<td align="left"><strong>dropdown</strong></td>							
+						</tr>
+						<tr>
+							<td align="left" width="30%" scope="row">Kategori Teknologi</td>
+							<td align="left"><strong>Pilih</strong></td>							
+						</tr>
+						<tr>
+							<td align="left" width="30%" scope="row">Nama teknologi</td>
+							<td align="left"><strong>input</strong></td>							
+						</tr>
+						
+					</tbody>
+				</table>
+		
+					
+					
+					';
+        echo $txt;
+		exit();
     }
-
-    public function showDesa($id){
-
-        $data['q'] = $this->wilayah->getDesa($id);
-
-        foreach($data['q'] as $dtDesa){
-
-            echo '<option value="'.$dtDesa['kd_desa'].'">'.$dtDesa['nm_desa'].'</option>';
-
-        }
-    }
-
     
 }
