@@ -70,7 +70,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
-$active_group = 'default';
+$active_group = 'server';
 $query_builder = true;
 
 $db['default'] = array(
@@ -78,6 +78,28 @@ $db['default'] = array(
     'hostname' => 'localhost',
     'username' => 'root',
     'password' => '',
+    'database' => 'simantapnew_db',
+    'dbdriver' => 'mysqli',
+    'dbprefix' => '',
+    'pconnect' => false,
+    'db_debug' => (ENVIRONMENT !== 'development'),
+    'cache_on' => false,
+    'cachedir' => '',
+    'char_set' => 'utf8',
+    'dbcollat' => 'utf8_general_ci',
+    'swap_pre' => '',
+    'encrypt' => false,
+    'compress' => false,
+    'stricton' => false,
+    'failover' => array(),
+    'save_queries' => true
+);
+
+$db['server'] = array(
+    'dsn'    => '',
+    'hostname' => '10.11.21.171',
+    'username' => 'api',
+    'password' => '1qazxsw2%$!(sjk_api',
     'database' => 'simantapnew_db',
     'dbdriver' => 'mysqli',
     'dbprefix' => '',

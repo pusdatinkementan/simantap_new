@@ -51,7 +51,7 @@
                         <td><?= $status; ?></td>
                         <td>
                         
-							<a title="Lihat Bukti Fisik" class="btn btn-primary mb-3" data-toggle="modal" style="cursor: pointer;" onclick="viewdetail('<?php echo $p['nip']; ?>')">Detail</a>
+							<a title="Detail Penyuluh" class="btn btn-primary mb-3" data-toggle="modal" style="cursor: pointer;" onclick="viewdetail('<?php echo $p['nip']; ?>')">Detail</a>
                         </td>
                     </tr>
                     <?php $i++; ?>

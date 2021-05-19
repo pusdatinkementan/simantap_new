@@ -29,8 +29,10 @@
                         <th scope="row"><?= $i; ?></th>
                         <td><?= $m['menu']; ?></td>
                         <td>
-                            <a href="" class="badge badge-success">edit</a>
-                            <a href="<?=base_url()?>menu/delete/<?=$m['id']?>" class="badge badge-danger">delete</a>
+      
+                            <a href="<?=base_url()?>menu/editmenu/<?=$m['id']?>" class="badge badge-success"'>Edit</a>
+                            <!-- <button class="badge badge-success" id="hapusmenu" data-id=<?=$m['id']?>>Hapus</button> -->
+                            <a href="<?=base_url()?>menu/deletemenu/<?=$m['id']?>" class="badge badge-danger" onclick='return confirm("are u sure?")'>Delete</a>
                         </td>
                     </tr>
                     <?php $i++; ?>
@@ -76,3 +78,4 @@
         </div>
     </div>
 </div> 
+

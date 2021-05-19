@@ -11,4 +11,22 @@ class Menu_model extends CI_Model
                 ";
         return $this->db->query($query)->result_array();
     }
+
+    public function getMasterMenu($id)
+    {
+        $query = "SELECT * FROM user_menu WHERE id = $id";
+        return  $this->db->query($query)->row_array();
+    }
+
+    public function editMasterMenu($id, $menu)
+    {
+       
+        $data = array(
+            'menu' => $menu       
+            );
+           
+            $this->db->where('id', $id);
+            $this->db->update('user_menu', $data);
+   
+    }
 }

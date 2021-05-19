@@ -7,6 +7,7 @@ class Menu extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        $this->load->model('Menu_model', 'menu');
     }
 
     public function index()
@@ -36,7 +37,7 @@ class Menu extends CI_Controller
     {
         $data['title'] = 'Submenu Management';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $this->load->model('Menu_model', 'menu');
+        
 
         $data['subMenu'] = $this->menu->getSubMenu();
         $data['menu'] = $this->db->get('user_menu')->result_array();
@@ -64,5 +65,48 @@ class Menu extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">New sub menu added!</div>');
             redirect('menu/submenu');
         }
+    }
+
+    public function editmenu($id){
+
+        $data['title'] = 'Edit Menu';
+
+        $data['menu'] = $this->menu->getMasterMenu($id);
+
+        if($_POST){
+
+           // echo "aaa"; die;
+            $data = array(
+                'menu' => $this->input->post('menu')      
+                );
+               
+                $this->db->where('id', $id);
+                $this->db->update('user_menu', $data);
+
+               // print_r($data); die;
+
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">menu edited!</div>');
+
+                redirect('menu');
+
+        }else{
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('menu/edit', $data);
+            $this->load->view('templates/footer');
+
+        }      
+      
+
+    }
+
+    public function deletemenu($id){
+
+        $this->db->delete('user_menu', ['id' => $id]);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Menu berhasil di hapus</div>');
+        redirect('menu');
+
     }
 }
