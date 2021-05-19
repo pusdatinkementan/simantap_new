@@ -139,15 +139,21 @@ homeButton.insertBefore(chart.zoomControl.plusButton);
 		</div>		   
 	</div>
 
-    
+    <?php
+    $api = 'https://api.pertanian.go.id/api/simantap/dashboard/list?&api-key=f13914d292b53b10936b7a7d1d6f2406';
+    $result = file_get_contents($api, false);
+    $json = json_decode($result,true);
+    $data = $json[0];
+    ?>
+
     <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                              Jumlah Penyuluh</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">56462</div>
+                                              Jumlah Penyuluh PNS</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=number_format($data['jumpenyuluhpns']);?></div>
                                         </div>
                                         <div class="col-auto">
                                         <img src="<?=base_url()?>/assets/img/agriculture.png" width="60"></img>
@@ -163,8 +169,8 @@ homeButton.insertBefore(chart.zoomControl.plusButton);
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Jumlah BPP</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">423</div>
+                                            Jumlah Penyuluh THL APBN</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=number_format($data['jumpenyuluhthlapbn']);?></div>
                                         </div>
                                         <div class="col-auto">
                                         <img src="<?=base_url()?>/assets/img/agriculture.png" width="60"></img>
@@ -179,8 +185,8 @@ homeButton.insertBefore(chart.zoomControl.plusButton);
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Jumlah Poktan</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">14353</div>
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Jumlah Penyuluh THL APBD</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=number_format($data['jumpenyuluhthlapbd']);?></div>
                                             <div class="row no-gutters align-items-center">
                                             <div class="col-auto">
                                                 <img src="<?=base_url()?>/assets/img/agriculture.png" width="60"></img>
@@ -200,8 +206,75 @@ homeButton.insertBefore(chart.zoomControl.plusButton);
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                <a href="" target="blank">Jumlah Penyuluh Swadaya</a></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=number_format($data['jumpenyuluhswadaya']);?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                        <img src="<?=base_url()?>/assets/img/agriculture.png" width="60"></img>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                <a href="" target="blank">Jumlah Penyuluh Swasta</a></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=number_format($data['jumpenyuluhswasta']);?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                        <img src="<?=base_url()?>/assets/img/agriculture.png" width="60"></img>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                <a href="" target="blank">Jumlah BPP</a></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=number_format($data['jumbpp']);?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                        <img src="<?=base_url()?>/assets/img/agriculture.png" width="60"></img>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                <a href="" target="blank">Jumlah Poktan</a></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=number_format($data['jumpoktan']);?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                        <img src="<?=base_url()?>/assets/img/agriculture.png" width="60"></img>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 <a href="" target="blank">Jumlah Gapoktan</a></div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">4234</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=number_format($data['jumgapoktan']);?></div>
                                         </div>
                                         <div class="col-auto">
                                         <img src="<?=base_url()?>/assets/img/agriculture.png" width="60"></img>
