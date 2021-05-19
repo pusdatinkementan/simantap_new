@@ -44,7 +44,7 @@
 					?>
                     <tr>
                         <th scope="row"><?= $i; ?></th>
-                        <td><?= $p['namalengkap']; ?></td>
+                        <td><?= $p['nip']; ?></td>
                         <td><?= $p['namalengkap']; ?></td>
 						<td><?= $p['tempat_lahir'].', '.$formatted; ?></td>
                         <td><?= (($p['kode_kab'] == '3') ? $p['bapel'] : $p['nama_bpp']); ?></td>                        
