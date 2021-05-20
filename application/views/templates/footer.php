@@ -45,6 +45,9 @@
             <!-- Core plugin JavaScript-->
             <script src="<?= base_url('assets/'); ?>vendor/jquery-easing/jquery.easing.min.js"></script>
 
+            <script src="<?= base_url('assets/'); ?>vendor/datatables/jquery.dataTables.js"></script>
+            <script src="<?= base_url('assets/'); ?>vendor/datatables/dataTables.bootstrap4.js"></script>
+
             <!-- Custom scripts for all pages-->
             <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
             <script src="<?= base_url(); ?>assets/js/sweetalert2.all.min.js"></script>

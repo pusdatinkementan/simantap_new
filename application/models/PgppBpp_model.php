@@ -8,7 +8,9 @@ class PgppBpp_model extends CI_Model
     public $id;
     public $tahun;
     public $bulan;
+    //public $bpp;
     public $bpp_id;
+    public $bpp_name;
     public $jenis_kegiatan;
     public $nama_kegiatan;
     public $tempat_pelaksanaan;
@@ -29,7 +31,7 @@ class PgppBpp_model extends CI_Model
             'label' => 'Bulan',
             'rules' => 'required'],
 
-            ['field' => 'bpp_id',
+            ['field' => 'bpp',
             'label' => 'BPP',
             'rules' => 'required'],
 
@@ -55,7 +57,7 @@ class PgppBpp_model extends CI_Model
 
             ['field' => 'pembiayaan',
             'label' => 'Pembiayaan',
-            'rules' => 'required'],
+            'rules' => 'required']
 
 
         ];
@@ -63,7 +65,7 @@ class PgppBpp_model extends CI_Model
 
     public function getAll()
     {
-        return $this->db->get($this->_table)->result();
+        return $this->db->get_where($this->_table, ["status" => 1])->result();
     }
 
     public function getById($id)
@@ -74,17 +76,18 @@ class PgppBpp_model extends CI_Model
     public function save()
     {
         $post = $this->input->post();
-        $this->id = uniqid();
+        //$this->id = uniqid();
         $this->tahun = $post["tahun"];
         $this->bulan = $post["bulan"];
         $this->bpp_id = $post["bpp_id"];
+        $this->bpp_name = $post["bpp_name"];
         $this->jenis_kegiatan = $post["jenis_kegiatan"];
         $this->nama_kegiatan = $post["nama_kegiatan"];
         $this->tempat_pelaksanaan = $post["tempat_pelaksanaan"];
         $this->narasumber = $post["narasumber"];
         $this->materi_sektor = $post["materi_sektor"];
         $this->pembiayaan = $post["pembiayaan"];
-        $this->foto = $post["foto"];
+        $this->foto = $this->_uploadImage();
         return $this->db->insert($this->_table, $this);
     }
 
@@ -94,25 +97,44 @@ class PgppBpp_model extends CI_Model
         $this->id = $post["id"];
         $this->tahun = $post["tahun"];
         $this->bulan = $post["bulan"];
-        $this->bpp_id = $post["bpp_id"];
         $this->jenis_kegiatan = $post["jenis_kegiatan"];
         $this->nama_kegiatan = $post["nama_kegiatan"];
         $this->tempat_pelaksanaan = $post["tempat_pelaksanaan"];
         $this->narasumber = $post["narasumber"];
         $this->materi_sektor = $post["materi_sektor"];
         $this->pembiayaan = $post["pembiayaan"];
-        $this->foto = $post["foto"];
+        //$this->foto = $post["foto"];
+        if (!empty($_FILES["foto"]["name"])) {
+            $this->image = $this->_uploadImage();
+        } else {
+            $this->image = $post["old_image"];
+        }
         return $this->db->update($this->_table, $this, array('id' => $post['id']));
     }
 
     public function delete($id)
     {
-        $post = $this->input->post();
-        $this->id = $post["id"];
-        $this->status = 0;
-        return $this->db->update($this->_table, $this, array('id' => $post['id']));
+        return $this->db->delete($this->_table, array("id" => $id));
     }
     
+    private function _uploadImage()
+    {
+        $config['upload_path']          = './assets/img/bpp/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['file_name']            = $this->id.$this->nama_kegiatan;
+        $config['overwrite']			= true;
+        $config['max_size']             = 2048; // 1MB
+        // $config['max_width']            = 1024;
+        // $config['max_height']           = 768;
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('foto')) {
+            return $this->upload->data("file_name");
+        }
+        
+        return "default.jpg";
+    }
 
 
 
