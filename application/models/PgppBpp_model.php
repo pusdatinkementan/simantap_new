@@ -68,6 +68,13 @@ class PgppBpp_model extends CI_Model
         return $this->db->get_where($this->_table, ["status" => 1])->result();
     }
 
+    public function getByBPP()
+    {
+        $post = $this->input->post();
+        $bpp_id = $post["bpp_id"];
+        return $this->db->get_where($this->_table, ["bpp_id" => $bpp_id, "status" => 1])->result();
+    }
+
     public function getById($id)
     {
         return $this->db->get_where($this->_table, ["id" => $id])->row();
@@ -91,12 +98,14 @@ class PgppBpp_model extends CI_Model
         return $this->db->insert($this->_table, $this);
     }
 
-    public function update()
+    public function update($id)
     {
         $post = $this->input->post();
         $this->id = $post["id"];
         $this->tahun = $post["tahun"];
         $this->bulan = $post["bulan"];
+        $this->bpp_id = $post["bpp_id"];
+        $this->bpp_name = $post["bpp_name"];
         $this->jenis_kegiatan = $post["jenis_kegiatan"];
         $this->nama_kegiatan = $post["nama_kegiatan"];
         $this->tempat_pelaksanaan = $post["tempat_pelaksanaan"];
@@ -105,11 +114,16 @@ class PgppBpp_model extends CI_Model
         $this->pembiayaan = $post["pembiayaan"];
         //$this->foto = $post["foto"];
         if (!empty($_FILES["foto"]["name"])) {
-            $this->image = $this->_uploadImage();
+            $this->foto = $this->_uploadImage();
         } else {
-            $this->image = $post["old_image"];
+            $this->foto = $post["old_image"];
         }
-        return $this->db->update($this->_table, $this, array('id' => $post['id']));
+        //return print_r($post);
+        //$this->db->where('id', $this->id);
+        //$this->db->update($this->_table, $this);
+        //return $this->db->affected_rows();
+        return $this->db->update($this->_table, $this, array('id' => $id));
+        //return $this->db->update($this->_table, $this, array("id" => $post["id"]));
     }
 
     public function delete($id)

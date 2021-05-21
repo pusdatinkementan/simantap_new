@@ -5,6 +5,11 @@
     <?php echo $this->session->flashdata('success'); ?>
 </div>
 <?php endif; ?>
+<?php if ($this->session->flashdata('fail')): ?>
+<div class="alert alert-danger" role="alert">
+    <?php echo $this->session->flashdata('fail'); ?>
+</div> 
+<?php endif; ?>
 
 <div class="card mb-3">
     <div class="card-header">
@@ -12,7 +17,7 @@
     </div>
     <div class="card-body">
 
-        <form action="" method="post" enctype="multipart/form-data" >
+        <form action="<?php base_url("kinerjaBPP/PgppBpp/edit") ?>" method="post" enctype="multipart/form-data" >
 
         <input type="hidden" name="id" value="<?php echo $pgppbpp->id?>" />
         
@@ -51,9 +56,10 @@
             <div class="form-group">
                 <label for="bpp_id">BPP</label>
                 <input type="hidden" name="bpp_name" value="<?php echo $pgppbpp->bpp_name?>" />
-                <select class="form-control <?php echo form_error('bpp') ? 'is-invalid':'' ?>" name="bpp_id" id="bpp_id">
+                <input type="hidden" name="bpp_id" value="<?php echo $pgppbpp->bpp_id?>" />
+                <select class="form-control <?php echo form_error('bpp') ? 'is-invalid':'' ?>" name="bpp" id="bpp">
                     <option value="<?php echo $pgppbpp->bpp_id ?>"> <?php echo $pgppbpp->bpp_name ?> </option>
-                </select>        
+                </select>
                 <div class="invalid-feedback">
                     <?php echo form_error('bpp') ?>
                 </div>

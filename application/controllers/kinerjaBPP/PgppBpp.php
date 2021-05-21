@@ -17,6 +17,23 @@ class PgppBpp extends CI_Controller
     {
         $data['title'] = 'Pusat Gerakan Pembangunan Pertanian - BPP';
         $data["pgppbpp"] = $this->PgppBpp_model->getAll();
+        $data['bpp'] = $this->bpp->getBPPbyWil();
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view("bpp/kinerja/pgppbpp/list", $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function searchBPP()
+    {
+        $post = $this->input->post();
+        if(($post['bpp_id'])=="") redirect('kinerjaBPP/PgppBpp');
+        //if($bpp_id=="") redirect('kinerjaBPP/PgppBpp');
+        $data['title'] = 'Pusat Gerakan Pembangunan Pertanian - BPP';
+        $data["pgppbpp"] = $this->PgppBpp_model->getbyBPP();
+        $data['bpp'] = $this->bpp->getBPPbyWil();
+        $data['bpp_detail'] = $this->bpp->getBPPbyID();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -52,8 +69,12 @@ class PgppBpp extends CI_Controller
         $validation->set_rules($pgppbpp->rules());
 
         if($validation->run()) {
-            $pgppbpp->update();
-            $this->session->set_flashdata('success', 'Berhasil disimpan');
+            //$pgppbpp->update();
+            if($pgppbpp->update($id)){
+                $this->session->set_flashdata('success', 'Berhasil disimpan');
+            } else {
+                $this->session->set_flashdata('fail', 'Controller gagal menyimpan');
+            }
         }
 
         $data["pgppbpp"] = $pgppbpp->getById($id);
@@ -65,6 +86,9 @@ class PgppBpp extends CI_Controller
         $this->load->view("bpp/kinerja/pgppbpp/edit_form", $data);
         $this->load->view('templates/footer');
     }
+
+
+ 
 
     public function delete($id = null)
     {

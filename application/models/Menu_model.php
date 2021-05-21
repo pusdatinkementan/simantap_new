@@ -33,6 +33,7 @@ class Menu_model extends CI_Model
            
             $this->db->where('id', $id);
             $this->db->update('user_menu', $data);
+            return $this->db->affected_rows();
    
     }
 }
