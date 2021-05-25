@@ -12,6 +12,12 @@ class Menu_model extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
+    public function getSubMenuById($id)
+    {
+        $query = "SELECT * FROM user_sub_menu WHERE id = $id";
+        return $this->db->query($query)->row_array();
+    }
+
     public function getMasterMenu($id)
     {
         $query = "SELECT * FROM user_menu WHERE id = $id";
@@ -27,6 +33,7 @@ class Menu_model extends CI_Model
            
             $this->db->where('id', $id);
             $this->db->update('user_menu', $data);
+            return $this->db->affected_rows();
    
     }
 }

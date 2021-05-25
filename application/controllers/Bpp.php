@@ -28,6 +28,11 @@ class Bpp extends CI_Controller
 		echo 'ok 321';
 	}
 
+    public function Pusatgerakanpembangunan(){
+		redirect(site_url('kinerjaBPP/PgppBpp'));
+	}
+
+    
 
 
     

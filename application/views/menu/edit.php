@@ -13,8 +13,7 @@
                     <div class="form-group">
                         <input type="text" class="form-control" id="menu" name="menu" placeholder="Menu name" value="<?=$menu['menu'];?>">
                     </div>              
-          
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    
                     <button type="submit" class="btn btn-primary">Edit</button>
         </form>
 

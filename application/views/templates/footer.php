@@ -39,7 +39,7 @@
             </div>
 
             <!-- Bootstrap core JavaScript-->
-            
+
             <!-- <script src="<?= base_url('assets/'); ?>js/myscript.js"></script> -->
 
             <script>
