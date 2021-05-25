@@ -29,4 +29,11 @@ class Penyuluh_model extends CI_Model
 		$json = file_get_contents($this->api_url.'simantap/getpoktan/list?wilker='.$wilker.'&api-key='.$this->api_key);
 		return json_decode($json,true);
     }
+	
+	 public function getPenyuluhbyid($id='')
+    {
+		$json = file_get_contents($this->api_url.'simantap/detailpenyuluhbyid/list?id='.$id.'&api-key='.$this->api_key);
+		return json_decode($json,true);
+    }
+	
 }
